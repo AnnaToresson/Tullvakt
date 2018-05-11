@@ -13,7 +13,7 @@ namespace Tullvakt.Test
         [TestMethod]
         public void TestInput_Under1000kg()
         {
-            var testFordon = new Vehicle(VehicleType.Motorcycle, new DateTime(2018, 05, 09, 19, 10, 0), false,
+            var testFordon = new Vehicle(VehicleType.Motorcycle, new DateTime(2018, 05, 09), false,
                 Weight.Under1000Kg);
 
             var actual = new CalculateToll().CalculateTotalTollPrice(testFordon);
@@ -35,21 +35,25 @@ namespace Tullvakt.Test
             var testFordon = new Vehicle(VehicleType.Truck, new DateTime(2018, 05, 12), false, Weight.Over1000Kg);
             var actual = new CalculateToll().CalculateTotalTollPrice(testFordon);
             Assert.AreEqual(expectedTotalPriceTruck_sunday, actual);
+
+           
+            var testFordonEco = new Vehicle(VehicleType.Truck, new DateTime(2018, 05, 12), true, Weight.Over1000Kg);
+            var actualEco = new CalculateToll().CalculateTotalTollPrice(testFordonEco);
+            Assert.AreEqual(0, actualEco);
         }
 
         [TestMethod]
         public void TestCar_Heavy()
         {
             
-            var testFordonEco = new Vehicle(VehicleType.Car, new DateTime(2018, 05, 12), true, Weight.Over1000Kg);
-            _expectedTotalPrice = 2000;
+            var testFordonEco = new Vehicle(VehicleType.Car, new DateTime(2018, 05, 11), true, Weight.Over1000Kg);
             var actualEco = new CalculateToll().CalculateTotalTollPrice(testFordonEco);
             Assert.AreEqual(0, actualEco);
 
-            var testFordonLow = new Vehicle(VehicleType.Car, new DateTime(2018, 05, 08, 01, 01, 01), false,
+            var testFordonSunday = new Vehicle(VehicleType.Car, new DateTime(2018, 05, 13), false,
                 Weight.Over1000Kg);
-            _expectedTotalPrice = 1000;
-            var actual = new CalculateToll().CalculateTotalTollPrice(testFordonLow);
+            _expectedTotalPrice = 2000;
+            var actual = new CalculateToll().CalculateTotalTollPrice(testFordonSunday);
             Assert.AreEqual(_expectedTotalPrice, actual);
         }
     }
