@@ -30,7 +30,7 @@ namespace Tullvakt
 
         public double CalculatePriceModifier(Vehicle vehicle)
         {
-            if (vehicle.IsEcoVehicle) return _priceModifier = EcoVehiclePrice;
+           // if (vehicle.IsEcoVehicle) return _priceModifier = EcoVehiclePrice;
             if (IsHoliday(vehicle.DateTime)) return _priceModifier = HolidayPrice;
             if (IsLowTraffic(vehicle.DateTime)) return _priceModifier = LowTraffic;
             return _priceModifier = 1;

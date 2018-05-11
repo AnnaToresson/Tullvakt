@@ -23,7 +23,7 @@ namespace Tullvakt.Test
         [TestMethod]
         public void TestCarInput_Eco()
         {
-            var testFordon = new Vehicle(VehicleType.Car, DateTime.Today, true, Weight.Under1000Kg);
+            var testFordon = new Vehicle(VehicleType.Car, DateTime.Now, true, Weight.Under1000Kg);
             var actual = new CalculateToll().CalculateTotalTollPrice(testFordon);
             Assert.AreEqual(excpectedPriceEco, actual);
         }
